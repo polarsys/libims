@@ -1,0 +1,45 @@
+///////////////////////////////////////////////////////////////////////////////
+ Copyright (c) 2018 Airbus Operations S.A.S                                  
+                                                                             
+ This program and the accompanying materials are made available under the    
+ terms of the Eclipse Public License v. 2.0 which is available at            
+ http://www.eclipse.org/legal/epl-2.0, or the Eclipse Distribution License   
+ v. 1.0 which is available at                                                
+ http://www.eclipse.org/org/documents/edl-v10.php.                           
+                                                                             
+ SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause                            
+///////////////////////////////////////////////////////////////////////////////
+
+LIBIMS
+======
+
+:doctype: article
+:encoding: utf-8
+:lang: en
+:imagesdir: images
+
+== Integrated Modular Simulation
+
+The *Integrated Modular Simulation library (LIBIMS)* aims at providing a C high level abstraction API that implements the *VISTAS* protocol.
+
+== Documentation
+
+link:./asciidoc/userguide.html[User Guide]::
+A short guide to get into the grips.
+link:./doxygen/html/index.html[Documentation]::
+The complete code documentation.
+
+ifdef::airbus-release[]
+link:./reqs/LIBIMS_SRD_SP1800448.doc[Software Requirements]::
+The development guidelines.
+link:./reqs/LIBIMS_PIVVR.xls[Test report]::
+Description and status of the tests.
+endif::[]
+
+link:./cov/Linux/index.html[Test coverage]::
+Code coverage status once tests performed.
+//-
+
+== Contact
+Geoffrey Delhomme - <geoffrey.g.delhomme@airbus.com>
+

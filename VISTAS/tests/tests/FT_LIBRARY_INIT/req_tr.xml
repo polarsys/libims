@@ -1,0 +1,16 @@
+<TestCase ID="@REQ_TEST_NAME@">
+	<Name>@REQ_TEST_NAME@</Name>
+	<TestDate>@REQ_TEST_TIME@</TestDate>
+	<Purpose>Check library initialization and application lookup</Purpose>
+	<Step ID="@REQ_TEST_NAME@_01">
+		<Reference>E_LIBIMS_SRD_INIT_0010</Reference>
+		<Reference>E_LIBIMS_SRD_INIT_0020</Reference>
+		<Reference>E_LIBIMS_SRD_INIT_0030</Reference>
+		<Reference>E_LIBIMS_SRD_INIT_0040</Reference>
+		<Reference>E_LIBIMS_SRD_CONFIG_0010</Reference>
+		<Reference>E_LIBIMS_SRD_CONFIG_0040</Reference>
+		<Reference>E_LIBIMS_SRD_CONFIG_0050</Reference>
+		<Reference>E_LIBIMS_SRD_CONFIG_0070</Reference>
+		<Result>@REQ_TEST_RESULT@</Result>
+	</Step>
+</TestCase>

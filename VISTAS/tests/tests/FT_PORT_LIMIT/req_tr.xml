@@ -1,0 +1,9 @@
+<TestCase ID="@REQ_TEST_NAME@">
+	<Name>@REQ_TEST_NAME@</Name>
+	<TestDate>@REQ_TEST_TIME@</TestDate>
+	<Purpose>Check if the LIBIMS can handle 100000 ports.</Purpose>
+	<Step ID="@REQ_TEST_NAME@_01">
+		<Reference>E_LIBIMS_SRD_TRANSVERSE_0060</Reference>
+		<Result>@REQ_TEST_RESULT@</Result>
+	</Step>
+</TestCase>

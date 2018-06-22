@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- 
+    * Copyright (c) 2018 Airbus Operations S.A.S                                  *
+    *                                                                             *
+    * This program and the accompanying materials are made available under the    *
+    * terms of the Eclipse Public License v. 2.0 which is available at            *
+    * http://www.eclipse.org/legal/epl-2.0, or the Eclipse Distribution License   *
+    * v. 1.0 which is available at                                                *
+    * http://www.eclipse.org/org/documents/edl-v10.php.                           *
+    *                                                                             *
+    * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause                            *
+-->
+
+<VirtualComponent xmlns:ex="http://airbus.com/modelingandsimulation/vsim/extension" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="testVirtualComponent" xsi:noNamespaceSchemaLocation="ims_config.xsd">
+  <Equipment Name="firstEquipment">
+    <Application Name="firstApplication">
+      <DataExchange>
+        <AFDX>
+          <ConsumedData>
+            <SamplingMessage Name="firstEquipment_firstApplication_AFDX_IN_AFDX_S_1" LocalName="AFDX_S_1" MessageSizeBytes="42" ValidityDurationUs="50000" />
+            <SamplingMessage Name="firstEquipment_firstApplication_AFDX_IN_AFDX_S_2" LocalName="AFDX_S_2" MessageSizeBytes="21" ValidityDurationUs="50000" />
+            <QueuingMessage Name="firstEquipment_firstApplication_AFDX_IN_AFDX_Q_1" LocalName="AFDX_Q_1" MaxSizeBytes="42" QueueDepth="2" />
+            <QueuingMessage Name="firstEquipment_firstApplication_AFDX_IN_AFDX_Q_2" LocalName="AFDX_Q_2" MaxSizeBytes="21" QueueDepth="4" />
+          </ConsumedData>
+        </AFDX>
+        <A429>
+          <ConsumedData>
+            <Bus Name="firstEquipment_firstApplication_A429_IN_A429_BUS1">
+              <SamplingLabel Sdi="01" LocalName="A429_BUS1_S_LABEL" Number="024" ValidityDurationUs="50000" />
+              <QueuingLabel Sdi="11" LocalName="A429_BUS1_Q_LABEL" Number="024" QueueDepth="4" />
+            </Bus>
+            <Bus Name="firstEquipment_firstApplication_A429_IN_A429_BUS2">
+              <SamplingLabel Sdi="01" LocalName="A429_BUS2_S_LABEL" Number="024" ValidityDurationUs="60000" />
+              <QueuingLabel Sdi="01" LocalName="A429_BUS2_Q_LABEL" Number="123" QueueDepth="5" />
+            </Bus>
+          </ConsumedData>
+        </A429>
+        <CAN>
+          <ConsumedData>
+            <Bus Name="firstEquipment_firstApplication_CAN_IN_CAN_BUS1">
+              <SamplingMessage DefaultId="1F" LocalName="CAN_BUS1_M1" MessageSizeBytes="4" ValidityDurationUs="50000" />
+              <SamplingMessage DefaultId="20" LocalName="CAN_BUS1_M2" MessageSizeBytes="8" ValidityDurationUs="60000" />
+            </Bus>
+            <Bus Name="firstEquipment_firstApplication_CAN_IN_CAN_BUS2">
+              <SamplingMessage DefaultId="10" LocalName="CAN_BUS2_M1" MessageSizeBytes="8" ValidityDurationUs="60000" />
+              <SamplingMessage DefaultId="30" LocalName="CAN_BUS2_M2" MessageSizeBytes="4" ValidityDurationUs="50000" />
+            </Bus>
+          </ConsumedData>
+        </CAN>
+        <DISCRETE>
+          <ConsumedData>
+            <Signal Name="DISC1" LocalName="DISC1" />
+            <Signal Name="DISC2" LocalName="DISC2" />
+            <Signal Name="DISC3" LocalName="DISC3" />
+            <Signal Name="DISC4" LocalName="DISC4" />
+          </ConsumedData>
+        </DISCRETE>
+        <ANALOGUE>
+          <ConsumedData>
+            <Signal Name="ANA1" LocalName="ANA1" ScaleFactor="1.5" Offset="0" />
+            <Signal Name="ANA2" LocalName="ANA2" ScaleFactor="1.5" Offset="0" />
+            <Signal Name="ANA3" LocalName="ANA3" ScaleFactor="1.5" Offset="0" />
+            <Signal Name="ANA4" LocalName="ANA4" ScaleFactor="1.5" Offset="0" />
+          </ConsumedData>
+        </ANALOGUE>
+        <NAD>
+          <ConsumedData>
+            <Message Name="grp1_nad1" LocalName="NAD1" MessageSizeBytes="4" />
+            <Message Name="grp1_nad2" LocalName="NAD2" MessageSizeBytes="1" />
+            <Message Name="grp2_nad1" LocalName="NAD3" MessageSizeBytes="8" />
+            <Message Name="grp2_nad2" LocalName="NAD4" MessageSizeBytes="10" />
+          </ConsumedData>
+        </NAD>
+      </DataExchange>
+    </Application>
+  </Equipment>
+</VirtualComponent>

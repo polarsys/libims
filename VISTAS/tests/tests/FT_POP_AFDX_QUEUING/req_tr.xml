@@ -1,0 +1,15 @@
+<TestCase ID="@REQ_TEST_NAME@">
+	<Name>@REQ_TEST_NAME@</Name>
+	<TestDate>@REQ_TEST_TIME@</TestDate>
+	<Purpose>Check the pop of A429 queuing messages</Purpose>
+	<Step ID="@REQ_TEST_NAME@_01">
+		<Reference>E_LIBIMS_SRD_RUNTIME_0400</Reference>
+		<Reference>E_LIBIMS_SRD_RUNTIME_0410</Reference>
+		<Reference>E_LIBIMS_SRD_RUNTIME_0420</Reference>
+		<Reference>E_LIBIMS_SRD_RUNTIME_0430</Reference>
+		<Reference>E_LIBIMS_SRD_RUNTIME_0440</Reference>
+		<Reference>E_LIBIMS_SRD_RUNTIME_0450</Reference>
+		<Reference>E_LIBIMS_SRD_RUNTIME_0460</Reference>
+		<Result>@REQ_TEST_RESULT@</Result>
+	</Step>
+</TestCase>

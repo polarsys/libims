@@ -1,0 +1,13 @@
+<TestCase ID="@REQ_TEST_NAME@">
+	<Name>@REQ_TEST_NAME@</Name>
+	<TestDate>@REQ_TEST_TIME@</TestDate>
+	<Purpose>Check the send of AFDX sampling messages</Purpose>
+	<Step ID="@REQ_TEST_NAME@_01">
+		<Reference>E_LIBIMS_SRD_RUNTIME_0020</Reference>
+		<Reference>E_LIBIMS_SRD_RUNTIME_0030</Reference>
+		<Reference>E_LIBIMS_SRD_RUNTIME_0040</Reference>
+		<Reference>E_LIBIMS_SRD_RUNTIME_0110</Reference>
+		<Reference>E_LIBIMS_SRD_RUNTIME_0050</Reference>
+		<Result>@REQ_TEST_RESULT@</Result>
+	</Step>
+</TestCase>

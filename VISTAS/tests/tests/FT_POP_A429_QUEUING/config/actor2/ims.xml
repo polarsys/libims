@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- 
+    * Copyright (c) 2018 Airbus Operations S.A.S                                  *
+    *                                                                             *
+    * This program and the accompanying materials are made available under the    *
+    * terms of the Eclipse Public License v. 2.0 which is available at            *
+    * http://www.eclipse.org/legal/epl-2.0, or the Eclipse Distribution License   *
+    * v. 1.0 which is available at                                                *
+    * http://www.eclipse.org/org/documents/edl-v10.php.                           *
+    *                                                                             *
+    * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause                            *
+-->
+
+<VirtualComponent xmlns:ex="http://airbus.com/modelingandsimulation/vsim/extension" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="testVirtualComponent" xsi:noNamespaceSchemaLocation="ims_config.xsd">
+  <Equipment Name="firstEquipment">
+    <Application Name="firstApplication">
+      <DataExchange>
+        <A429>
+          <ConsumedData>
+            <Bus Name="firstEquipment_firstApplication_A429_IN_bus1">
+              <SamplingLabel Sdi="01" LocalName="bus1_l1" Number="024" ValidityDurationUs="50000" />
+              <QueuingLabel Sdi="11" LocalName="bus1_l2" Number="024" QueueDepth="4" />
+            </Bus>
+            <Bus Name="firstEquipment_firstApplication_A429_IN_bus2">
+              <SamplingLabel Sdi="01" LocalName="bus2_l1" Number="024" ValidityDurationUs="60000" />
+              <QueuingLabel Sdi="01" LocalName="bus2_l2" Number="123" QueueDepth="5" />
+            </Bus>
+          </ConsumedData>
+          <ProducedData>
+            <Bus Name="firstEquipment_firstApplication_A429_OUT_producedbus">
+              <QueuingLabel Sdi="11" LocalName="output_label" Number="024" QueueDepth="4" />
+            </Bus>
+          </ProducedData>
+        </A429>
+      </DataExchange>
+    </Application>
+  </Equipment>
+</VirtualComponent>

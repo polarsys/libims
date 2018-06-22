@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- 
+    * Copyright (c) 2018 Airbus Operations S.A.S                                  *
+    *                                                                             *
+    * This program and the accompanying materials are made available under the    *
+    * terms of the Eclipse Public License v. 2.0 which is available at            *
+    * http://www.eclipse.org/legal/epl-2.0, or the Eclipse Distribution License   *
+    * v. 1.0 which is available at                                                *
+    * http://www.eclipse.org/org/documents/edl-v10.php.                           *
+    *                                                                             *
+    * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause                            *
+-->
+
+<VirtualComponent xmlns:ex="http://airbus.com/modelingandsimulation/vsim/extension" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="testVirtualComponent" xsi:noNamespaceSchemaLocation="ims_config.xsd">
+  <Equipment Name="firstEquipment">
+    <Application Name="firstApplication">
+      <DataExchange>
+        <AFDX>
+          <ProducedData>
+            <SamplingMessage Name="firstEquipment_firstApplication_AFDX_OUT_oneAFDX" LocalName="AFDXLocalName" MessageSizeBytes="42" ValidityDurationUs="50000" />
+          </ProducedData>
+        </AFDX>
+      </DataExchange>
+    </Application>
+  </Equipment>
+</VirtualComponent>

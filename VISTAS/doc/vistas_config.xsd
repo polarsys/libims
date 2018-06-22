@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+    * Copyright (c) 2018 Airbus Operations S.A.S                                  *
+    *                                                                             *
+    * This program and the accompanying materials are made available under the    *
+    * terms of the Eclipse Public License v. 2.0 which is available at            *
+    * http://www.eclipse.org/legal/epl-2.0, or the Eclipse Distribution License   *
+    * v. 1.0 which is available at                                                *
+    * http://www.eclipse.org/org/documents/edl-v10.php.                           *
+    *                                                                             *
+    * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause                            *
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.0">
+
+  <!-- Network node -->
+  <xs:element name="Network">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ControlServers" type="servers-type" minOccurs="0" />
+        <xs:element name="VirtualComponent" type="virtual-component-type" minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+      <xs:anyAttribute namespace="##other" processContents="skip" />
+    </xs:complexType>
+  </xs:element>
+
+
+  <!-- Servers -->
+  <xs:complexType name="servers-type">
+    <xs:all>
+      <xs:element name="PowerSupply" type="server-type" minOccurs="0" />
+      <xs:element name="SignalOverriding" type="server-type" minOccurs="0" />
+      <xs:element name="Synchronization" type="server-type" minOccurs="0" />
+      <xs:element name="Modes" type="server-type" minOccurs="0" />
+    </xs:all>
+    <xs:anyAttribute namespace="##other" processContents="skip" />
+  </xs:complexType>
+
+
+  <!-- Server -->
+  <xs:complexType name="server-type">
+    <xs:attribute name="IPAddress" type="ip-type" use="required" />
+    <xs:attribute name="Port" type="xs:positiveInteger" use="required" />
+    <xs:anyAttribute namespace="##other" processContents="skip" />
+  </xs:complexType>
+
+
+  <!-- VirtualComponent node -->
+  <xs:complexType name="virtual-component-type">
+    <xs:choice minOccurs="1" maxOccurs="unbounded">
+      <xs:element name="A429_Channel" type="base-channel-type" />
+      <xs:element name="A664_Channel" type="base-channel-type" />
+      <xs:element name="A825_Channel" type="base-channel-type" />
+      <xs:element name="MIL_BUS_Channel" type="base-channel-type" />
+      <xs:element name="Discrete_Channel" type="extended-channel-type" />
+      <xs:element name="Analog_Channel" type="extended-channel-type" />
+      <xs:element name="NAD_Channel" type="extended-channel-type" />
+    </xs:choice>
+    <xs:attribute name="Name" type="non-empty-type" use="required" />
+    <xs:anyAttribute namespace="##other" processContents="skip" />
+  </xs:complexType>
+
+
+  <xs:complexType name="base-channel-type">
+    <xs:sequence>
+      <xs:element name="Socket" type="socket-type" maxOccurs="unbounded" />
+      <xs:element name="Header" type="header-type" />
+    </xs:sequence>
+    <xs:attribute name="Name" type="non-empty-type" use="required" />
+    <xs:attribute name="Direction" type="direction-type" use="required" />
+    <xs:attribute name="MessageMaxSize" type="xs:positiveInteger" use="required" />
+    <xs:attribute name="FifoSize" type="xs:positiveInteger" use="required" />
+    <xs:attribute name="Comment" type="xs:string" use="optional" />
+    <xs:attribute name="Speed" type="speed-type" use="optional" />
+    <xs:attribute name="ICD" type="xs:string" use="optional" />
+    <xs:anyAttribute namespace="##other" processContents="skip" />
+  </xs:complexType>
+
+  <xs:complexType name="extended-channel-type">
+    <xs:complexContent>
+      <xs:extension base="base-channel-type">
+        <xs:sequence>
+          <xs:element name="Signals" type="signals-type" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="socket-type">
+    <xs:attribute name="DstIP" type="ip-type" use="required" />
+    <xs:attribute name="DstPort" type="xs:positiveInteger" use="required" />
+    <xs:attribute name="SrcIP" type="ip-type" use="optional" />
+    <xs:attribute name="SrcPort" type="xs:positiveInteger" use="optional" />
+    <xs:attribute name="MulticastInterfaceIP" type="ip-type" use="optional" />
+    <xs:attribute name="TTL" type="xs:positiveInteger" use="optional" />
+    <xs:anyAttribute namespace="##other" processContents="skip" />
+  </xs:complexType>
+
+  <xs:complexType name="header-type">
+    <xs:attribute name="Src_Id" type="yes-no-type" use="optional" />
+    <xs:attribute name="SN" type="yes-no-type" use="optional" />
+    <xs:attribute name="QoS_Timestamp" type="yes-no-type" use="optional" />
+    <xs:attribute name="Data_Timestamp" type="yes-no-type" use="optional" />
+    <xs:anyAttribute namespace="##other" processContents="skip" />
+  </xs:complexType>
+
+  <xs:complexType name="signals-type">
+    <xs:sequence>
+      <xs:element name="Signal" type="signal-type" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute namespace="##other" processContents="skip" />
+  </xs:complexType>
+
+
+  <xs:complexType name="signal-type">
+    <xs:attribute name="Name" type="non-empty-type" use="required" />
+    <xs:attribute name="ByteOffset" type="xs:nonNegativeInteger" use="required" />
+    <xs:attribute name="Type" type="xs:string" use="optional" />
+    <xs:attribute name="Size" type="xs:positiveInteger" use="optional" />
+    <xs:attribute name="Unit" type="xs:string" use="optional" />
+    <xs:anyAttribute namespace="##other" processContents="skip" />
+  </xs:complexType>
+
+
+
+  <!-- Direction type -->
+  <xs:simpleType name='direction-type'>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="In" />
+      <xs:enumeration value="Out" />
+    </xs:restriction>
+  </xs:simpleType>
+
+
+  <!-- Yes No type -->
+  <xs:simpleType name='yes-no-type'>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Yes" />
+      <xs:enumeration value="No" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name='speed-type'>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Low" />
+      <xs:enumeration value="High" />
+    </xs:restriction>
+  </xs:simpleType>
+
+
+
+  <!-- * * Standard simple types * -->
+  <xs:simpleType name='non-empty-type'>
+    <xs:restriction base='xs:token'>
+      <xs:minLength value='1' />
+    </xs:restriction>
+  </xs:simpleType>
+
+
+  <!-- * * IP type * -->
+  <xs:simpleType name="ip-type">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="([0-9]{1,3}\.){3}[0-9]{1,3}" />
+    </xs:restriction>
+  </xs:simpleType>
+
+
+</xs:schema>

@@ -1,0 +1,212 @@
+///////////////////////////////////////////////////////////////////////////////
+ Copyright (c) 2018 Airbus Operations S.A.S                                  
+                                                                             
+ This program and the accompanying materials are made available under the    
+ terms of the Eclipse Public License v. 2.0 which is available at            
+ http://www.eclipse.org/legal/epl-2.0, or the Eclipse Distribution License   
+ v. 1.0 which is available at                                                
+ http://www.eclipse.org/org/documents/edl-v10.php.                           
+                                                                             
+ SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause                            
+///////////////////////////////////////////////////////////////////////////////
+
+= LIBIMS User Guide
+Geoffrey DELHOMME <geoffrey.g.delhomme@airbus.com>
+:doctype: book
+:encoding: utf-8
+:lang: en
+:toc: left
+:toclevels: 4
+:imagesdir: images
+:experimental:
+:data-uri:
+
+image::AIRBUS_3D_Blue_s-169X26.png[float="right",align="center"]
+
+:doc_reference: UG1502281
+:doc_version: 
+:doc_date: 2018-02-05T09:53:56
+
+:airbus_header: {doctitle} | REF. {doc_reference} | {doc_version} | {doc_date}
+
+'''
+
+[width="100%",cols="30s,70"<]
+|===
+|  AIRCRAFT PROGRAM  |  ALL
+|===
+
+[width="100%",cols="30s,70"<]
+|===
+|  ORIGIN            |  EYYSEW
+|  AUTHOR            |  Geoffrey DELHOMME
+|===
+
+[width="100%",cols="30s,70"<]
+|===
+|  REFERENCE         |  {doc_reference}
+|  PROJECT REFERENCE |  Simulation Frameworks
+|  ISSUE             |  {doc_version}
+|  DATE              |  {doc_date}
+|===
+
+[width="100%",cols="30s,70"<]
+|===
+|  CUSTOMER          |
+|  LANGAGE           |  English
+|===
+
+
+[width="100%"]
+|===
+s| Summary:
+a|
+User Guide of the LIBIMS library, implementing the VISTAS communication protocol.
+|===
+
+
+[width="100%",cols="16,18,20,8,14",options="compact"]
+|===
+
+^|  ^s| NAME ^s| SIGLUM / FUNCTION ^s| DATE ^s| SIGNATURE
+| *Authoring*   | Geoffrey DELHOMME | EYYSEW - Modelling & Simulation - System Engineer ||
+| *Approval* | Nathalie DELRIEU (AKKA) | S/C for EYYQ - Quality Manager ||
+| *Authorization* | Emmanuel CLOURY | Head of EYYSEW ||
+|===
+'''
+[small]#(C) AIRBUS OPERATIONS SAS. 2017. All rights reserved. Confidential and proprietary document.
+This document and all information contained herein is the sole property of AIRBUS OPERATIONS SAS.. No intellectual property rights are granted by the delivery of this document or the disclosure of its content. This document shall not be reproduced or disclosed to a third party without the express written consent of AIRBUS OPERATIONS SAS.. This document and its content shall not be used for any purpose other than that for which it is supplied.#
+
+<<<
+
+== Table of records
+[width="100%",cols="15,15,15,55",options="header"]
+|===
+
+^| Version
+^| Date
+^| Link to paragraph
+^s| Reason for revision
+
+| 1.2.1
+| 15/06/2018
+| All
+| Document creation
+
+|===
+
+:sectnums:
+== Introduction
+
+=== Purpose of the document
+
+The main purpose of this document is to provide general guidelines and advices in LIBIMS library integration.
+
+=== Documentary References
+
+[width="100%",options="header",cols="1,5"]
+|===
+
+|Reference |Title
+
+| SP1800448
+| LIBIMS Software Requirements Data
+
+|===
+
+=== Glossary and Terminology
+
+[width="100%",options="header",cols="1,5"]
+|===
+
+|Initials|Signification
+
+| SPS
+| Simulation Product Simulation
+
+| VISTAS
+| Virtually Integrated Simulation for Tests between Airframers and Suppliers
+
+| VC
+| Virtual Component
+
+| NAD
+| Non Avionic Data
+
+|===
+
+=== Typing Conventions
+In this document, you will find the following conventions:
+[NOTE]
+====
+Notes have this appearance
+====
+[TIP]
+====
+Tips have this appearance
+====
+[IMPORTANT]
+====
+Important things have this appearance
+====
+[CAUTION]
+====
+Cautions have this appearance
+====
+[WARNING]
+====
+Warnings have this appearance
+====
+.Command line examples are formatted like this:
+[source,sh]
+----
+./executable --test arg1 arg2
+----
+
+=== Legal References
+Windows (C) is a property of Microsoft Corporation (C).
+
+Linux (TM) is a registered trademark by Linus Torvalds.
+
+Python (TM) is a trademark or registered trademark of the Python Software Foundation.
+
+== Conditions of Installation and Use
+
+=== Installation Procedure
+The software delivery directory contains the files:
+
+
+* *doc*
+
+* *Win32*
+
+* *Win64*
+
+* *Linux32*
+
+* *Linux64*
+
+
+=== Required Hardware Configuration
+
+The software can run on standard x86_64 architectures.
+
+=== Required Software Configuration
+
+The following Operating Systems are supported:
+
+[width="100%",options="header"]
+|====================
+| Operating System | Supported Version  | Platform
+| RedHat Enterprise Linux (RHEL) | 5 / 7 | i686 / x86_64
+| Microsoft Windows | 7 / 10 | i686 / x86_64
+|====================
+
+=== Limitations
+
+[CAUTION]
+====
+The MIL-1553 communication protocol is not implemented in the LIBIMS.
+====
+
+== Presentation of the Product

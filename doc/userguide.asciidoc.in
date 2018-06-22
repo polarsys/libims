@@ -1,0 +1,397 @@
+///////////////////////////////////////////////////////////////////////////////
+ Copyright (c) 2018 Airbus Operations S.A.S                                  
+                                                                             
+ This program and the accompanying materials are made available under the    
+ terms of the Eclipse Public License v. 2.0 which is available at            
+ http://www.eclipse.org/legal/epl-2.0, or the Eclipse Distribution License   
+ v. 1.0 which is available at                                                
+ http://www.eclipse.org/org/documents/edl-v10.php.                           
+                                                                             
+ SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause                            
+///////////////////////////////////////////////////////////////////////////////
+
+= @ASCIIDOCTOR_PROJECT_NAME@ User Guide
+Geoffrey DELHOMME <geoffrey.g.delhomme@airbus.com>
+:doctype: book
+:encoding: utf-8
+:lang: en
+:toc: left
+:toclevels: 4
+:imagesdir: images
+:experimental:
+:data-uri:
+
+image::AIRBUS_3D_Blue_s-169X26.png[float="right",align="center"]
+
+:doc_reference: UG1502281
+:doc_version: @ASCIIDOCTOR_PROJECT_VERSION@
+:doc_date: @ASCIIDOCTOR_PROJECT_DATE@
+
+:airbus_header: {doctitle} | REF. {doc_reference} | {doc_version} | {doc_date}
+
+'''
+
+[width="100%",cols="30s,70"<]
+|===
+|  AIRCRAFT PROGRAM  |  ALL
+|===
+
+[width="100%",cols="30s,70"<]
+|===
+|  ORIGIN            |  EYYSEW
+|  AUTHOR            |  Geoffrey DELHOMME
+|===
+
+[width="100%",cols="30s,70"<]
+|===
+|  REFERENCE         |  {doc_reference}
+|  PROJECT REFERENCE |  Simulation Frameworks
+|  ISSUE             |  {doc_version}
+|  DATE              |  {doc_date}
+|===
+
+[width="100%",cols="30s,70"<]
+|===
+|  CUSTOMER          |
+|  LANGAGE           |  English
+|===
+
+
+[width="100%"]
+|===
+s| Summary:
+a|
+User Guide of the LIBIMS library, implementing the VISTAS communication protocol.
+|===
+
+
+[width="100%",cols="16,18,20,8,14",options="compact"]
+|===
+
+^|  ^s| NAME ^s| SIGLUM / FUNCTION ^s| DATE ^s| SIGNATURE
+| *Authoring*   | Geoffrey DELHOMME | EYYSEW - Modelling & Simulation - System Engineer ||
+| *Approval* | Nathalie DELRIEU (AKKA) | S/C for EYYQ - Quality Manager ||
+| *Authorization* | Emmanuel CLOURY | Head of EYYSEW ||
+|===
+'''
+[small]#(C) AIRBUS OPERATIONS SAS. 2017. All rights reserved. Confidential and proprietary document.
+This document and all information contained herein is the sole property of AIRBUS OPERATIONS SAS.. No intellectual property rights are granted by the delivery of this document or the disclosure of its content. This document shall not be reproduced or disclosed to a third party without the express written consent of AIRBUS OPERATIONS SAS.. This document and its content shall not be used for any purpose other than that for which it is supplied.#
+
+<<<
+
+== Table of records
+[width="100%",cols="15,15,15,55",options="header"]
+|===
+
+^| Version
+^| Date
+^| Link to paragraph
+^s| Reason for revision
+
+| 1.2.1
+| 15/06/2018
+| All
+| Document creation
+
+|===
+
+:sectnums:
+== Introduction
+
+=== Purpose of the document
+
+The main purpose of this document is to provide general guidelines and advices in LIBIMS library integration.
+
+=== Documentary References
+
+[width="100%",options="header",cols="1,5"]
+|===
+
+|Reference |Title
+
+| SP1800448
+| LIBIMS Software Requirements Data
+
+|===
+
+=== Glossary and Terminology
+
+[width="100%",options="header",cols="1,5"]
+|===
+
+|Initials|Signification
+
+| SPS
+| Simulation Product Simulation
+
+| VISTAS
+| Virtually Integrated Simulation for Tests between Airframers and Suppliers
+
+| VC
+| Virtual Component
+
+| NAD
+| Non Avionic Data
+
+|===
+
+=== Typing Conventions
+In this document, you will find the following conventions:
+[NOTE]
+====
+Notes have this appearance
+====
+[TIP]
+====
+Tips have this appearance
+====
+[IMPORTANT]
+====
+Important things have this appearance
+====
+[CAUTION]
+====
+Cautions have this appearance
+====
+[WARNING]
+====
+Warnings have this appearance
+====
+.Command line examples are formatted like this:
+[source,sh]
+----
+./executable --test arg1 arg2
+----
+
+=== Legal References
+Windows (C) is a property of Microsoft Corporation (C).
+
+Linux (TM) is a registered trademark by Linus Torvalds.
+
+Python (TM) is a trademark or registered trademark of the Python Software Foundation.
+
+== Conditions of Installation and Use
+
+=== Compilation Tools
+Compilation process is made according to __CMake__ tool. At compilation time, dependencies are :
+
+[width="100%",options="header"]
+|===
+| Tool | Version | Goal | Necessity
+| Ninja | 1.8.2 | Build system | Mandatory
+| LibXml2 | 2.9.3 | Handle xml and xsd files | Mandatory 
+| Doxygen | 1.8.14 | Documentation generation | Optionnal 
+| Graphviz | 3.26.3 | Graph virtualization software used for documentation generation | Optionnal
+| Asciidoctor | 1.5.6 | Documentation generation, from Ruby & Gems | Optionnal 
+| LCOV | 1.13.0 | Code coverage report generation | Optionnal 
+|===
+
+[NOTE]
+====
+At runtime, no particular dependency is needed.
+====
+
+=== Compilation Scripts
+
+LIBIMS can be compiled with the following scripts :
+[options="compact"]
+- __install.bat__ on Windows
+- __install.sh__ on Linux 
+
+[NOTE]
+====
+32 or 64 bits can be chosen by specifing "__i686__" or "__x86_64__". By default, the build is in 64 bits. 
+====
+
+[NOTE]
+====
+Debug or release can be chose by specifing "__debug__" or "__release__". By default, the build is in debug mode. 
+====
+
+Options can be added to those scripts :
+
+[width="100%",options="header"]
+|===
+| Option | Description
+| h | Help
+| c | Clean operation before the compilation 
+| d | Build documentation 
+| t | Run tests
+| p | Create installer
+ifdef::airbus-release[]
+| r | Generate Reqtify report (only under Windows)
+| o | Generate export directory
+endif::[]
+| i | Enable instrumentation
+| s | Enable step by step 
+|===
+
+=== Installation Procedure
+
+The software delivery directory contains :
+
+==== Documentation directory 
+This directory is located in _install/doc_ and contains documentation relatives to IMS.
+
+[options="compact"]
+- index.html : this page reports all important document about LIBIMS
+- SRD file : the development guidelines
+- asciidoc : contains the user guide html page and its resources
+- doxygen : contains the code documentation 
+- reqs : contains the PIVVR file (description and status of the tests)
+
+==== Binaries directory
+
+===== Windows
+
+This directory is located in _install/Windows/i386_ and _install/Windows/x86_64_ :
+
+
+bin::
+    * libcharset-1.dll : LIBIMS dependency
+    * libiconv-2.dll : LIBIMS dependency
+    * libVISTAS.dll : VISTAS shared library 
+    * libxml2-2.dll : LIBIMS dependency
+    * zlib1.dll : LIBIMS dependency
+cmake::
+    * FindLIBIMS.cmake : script allowing to use the __find_package__ method to find IMS library
+include::
+     ims.h : the header  file needed to include in project using LIBIMS
+lib::
+    * libVISTAS.dll.a : VISTAS import library 
+    * libVISTAS.a : VISTAS static library 
+script::
+    * vistas_inverter.py : script whose goal is to invert direction od data in the configuration and network files
+    * vistas_platform_resolver.py : platform resolver
+
+    
+===== Linux
+
+This directory is located in _install/Linux/i686_ and _install/Linux/x86_64_: 
+
+[options="compact"]
+cmake::
+    * FindLIBIMS.cmake : script allowing to use the __find_package__ method to find IMS library
+include::
+    * ims.h : the header  file needed to include in project using LIBIMS
+lib::
+    * libVISTAS.a : VISTAS static library 
+    * libVISTAS.so : VISTAS dynamic library 
+script::
+    * vistas_inverter.py : script whose goal is to invert direction od data in the configuration and network files
+    * vistas_platform_resolver.py : platform resolver
+
+=== Required Hardware Configuration
+
+The software can run on standard x86_64 architectures.
+
+=== Required Software Configuration
+
+The following Operating Systems are supported:
+
+[width="100%",options="header"]
+|====================
+| Operating System | Supported Version  | Platform
+| RedHat Enterprise Linux (RHEL) | 5 / 7 | i686 / x86_64
+| Microsoft Windows | 7 / 10 | i686 / x86_64
+|====================
+
+=== Limitations
+
+[CAUTION]
+====
+The MIL-1553 communication protocol is not implemented in the LIBIMS.
+====
+
+== Presentation of the Product
+
+=== Identification of the product 
+
+LIBIMS stands for *Integrated Modular Simulation LIBrary*. The main goal of this library is to implement an abstract communication layer able to implement several protocols. 
+
+=== Protocols 
+
+[IMPORTANT]
+====
+For now, only the __VISTAS__ protocol is available in the IMS library. 
+====
+
+==== VISTAS
+__VISTAS__ stands for *Virtually Integrated Simulation for Tests between Airframers and Suppliers*. It is a new protocol that enables interconnecting virtual components. It also enables the monitoring and the control of data exchanges and the virtual components themselves.
+
+=== Description of the Operation Process
+
+The configuration file and the network file are the two mandatory parameters for LIBIMS. The initialisation file is optionnal.
+
+image::overall.png[align="center"]
+
+
+=== Data declaration 
+
+Data are created in compliance with the IMS configuration file :
+
+[width="100%",options="header"]
+|===
+| Protocol | Max Size
+.2+| AFDX 
+| Sampling - Size of the message
+| Queuing - Max size of the message
+.2+| A429 
+| Sampling - Always 4
+| Queuing - Max number of messages to be write per cycle * 4
+.2+| CAN 
+| Sampling - Fixed size of this CAN message
+| Queuing - Max number of messages to be write per cycle * message size
+| Analogue | Always 4
+| Discrete | 1 or 4 (byte or integer can be used to store discrete signals. API handles it correctly.)
+|===
+
+=== Description of the library usage
+
+LIBIMS usage is split in three main phases :
+
+* *Initialisation* : the library loads the configuration files provided and create the context by initializing its internal structure.
+
+* *Runtime* : The runtime consists in a cycle loop defined by :
+** Import : According to __ims_import()__ the library will import data from network and make them available for reading operations;
+** Update : Read / Write messages. Messages can be read from the database via the __ims_get_message()__ function;
+** Progress : Make time progress thanks to the __ims_progress__ function;
+** Send : Send all messages on the network with __ims_send_all()__ function.
+
+* *Termination* : The internal resources are freed through the __ims_free_context()__ function.
+
+
+==== Full example 
+
+Following is an example of the library usage :
+[source,c++]
+----
+ims_node_t ims_context = (ims_node_t)INVALID_POINTER;
+ims_create_context_parameter_t params = IMS_CREATE_CONTEXT_INITIALIZER;
+ims_node_t ims_equipment = (ims_node_t)INVALID_POINTER;
+ims_node_t ims_application = (ims_node_t)INVALID_POINTER;
+ims_message_t ims_message = (ims_node_t)INVALID_POINTER;
+
+const char payload1[MESSAGE_SIZE] = "hello, world!";
+
+ims_return_code_t ims_status = ims_create_context(filename_ims, filename_network, &params, &_ims_context); <!--1-->
+ims_import(ims_context, 1000); <!--2-->
+
+ims_get_equipment(ims_context, "firstEquipment", &ims_equipment);
+ims_get_application(ims_equipment, "firstApplication", &ims_application); <!--3-->
+
+ims_get_message(ims_application, ims_afdx, "AFDXLocalName", MESSAGE_SIZE, 1, ims_input, &ims_message); <!--4-->
+ims_write_sampling_message(ims_message, payload1, MESSAGE_SIZE); <!--5-->
+ims_progress(ims_context, 1000); <!--6-->
+ims_send_all(ims_context); <!--7-->
+ims_free_context(ims_context); <!--8-->
+----
+
+<1> Creation of the context
+<2> Import data from network
+<3> Load the "firstEquipment" node its child called "firstApplication" from the context
+<4> Load the input AFDX message called "AFDXLocalName" from the "firstApplication" node and stores it in __ims_message__ variable
+<5> Store a message to send over the network in __ims_message__ variable
+<6> Make the time progress of 1000 ms
+<7> Send all message (__ie__ only __ims_message__ is send here)
+<8> Free the context

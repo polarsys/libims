@@ -1,0 +1,13 @@
+<TestCase ID="@REQ_TEST_NAME@">
+	<Name>@REQ_TEST_NAME@</Name>
+	<TestDate>@REQ_TEST_TIME@</TestDate>
+	<Purpose>Check the reading of AFDX sampling, A429 sampling and CAN init values</Purpose>
+	<Step ID="@REQ_TEST_NAME@_01">
+		<Reference>E_LIBIMS_SRD_CONFIG_0030</Reference>
+		<Reference>E_LIBIMS_SRD_CONFIG_0050</Reference>
+		<Reference>E_LIBIMS_SRD_RUNTIME_0270</Reference>
+		<Reference>E_LIBIMS_SRD_RUNTIME_0280</Reference>
+		<Reference>E_LIBIMS_SRD_RUNTIME_0290</Reference>
+		<Result>@REQ_TEST_RESULT@</Result>
+	</Step>
+</TestCase>

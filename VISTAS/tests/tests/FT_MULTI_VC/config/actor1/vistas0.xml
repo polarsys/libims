@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- 
+    * Copyright (c) 2018 Airbus Operations S.A.S                                  *
+    *                                                                             *
+    * This program and the accompanying materials are made available under the    *
+    * terms of the Eclipse Public License v. 2.0 which is available at            *
+    * http://www.eclipse.org/legal/epl-2.0, or the Eclipse Distribution License   *
+    * v. 1.0 which is available at                                                *
+    * http://www.eclipse.org/org/documents/edl-v10.php.                           *
+    *                                                                             *
+    * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause                            *
+-->
+
+<Network xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vistas_config.xsd">
+    <VirtualComponent Name="GoodVirtualComponent">
+        <A664_Channel Name="AFDX_S_O" Direction="Out" MessageMaxSize="42" FifoSize="1">
+            <Socket DstIP="226.23.12.1" DstPort="7078" />
+            <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+        </A664_Channel>
+        <A664_Channel Name="AFDX_Q_O" Direction="Out" MessageMaxSize="42" FifoSize="2">
+            <Socket DstIP="226.23.12.1" DstPort="7079" />
+            <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+        </A664_Channel>
+		<A664_Channel Name="AFDX_Q_I" Direction="In" MessageMaxSize="42" FifoSize="2">
+            <Socket DstIP="226.23.12.1" DstPort="7080" />
+            <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+        </A664_Channel>
+		<A664_Channel Name="AFDX_S_I" Direction="In" MessageMaxSize="42" FifoSize="2">
+            <Socket DstIP="226.23.12.1" DstPort="7081" />
+            <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+        </A664_Channel>
+    </VirtualComponent>
+</Network>

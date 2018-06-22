@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- 
+    * Copyright (c) 2018 Airbus Operations S.A.S                                  *
+    *                                                                             *
+    * This program and the accompanying materials are made available under the    *
+    * terms of the Eclipse Public License v. 2.0 which is available at            *
+    * http://www.eclipse.org/legal/epl-2.0, or the Eclipse Distribution License   *
+    * v. 1.0 which is available at                                                *
+    * http://www.eclipse.org/org/documents/edl-v10.php.                           *
+    *                                                                             *
+    * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause                            *
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           elementFormDefault="unqualified" 
+           attributeFormDefault="unqualified" 
+           version="1.0">
+
+  <!--
+      *
+      * Init node
+      *
+  -->
+  <xs:element name="Init">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="AfdxSamplingMessage" type="afdx-type" />
+        <xs:element name="A429SamplingLabel"   type="a429-type" />
+        <xs:element name="CanSamplingMessage"  type="can-type" />
+        <xs:element name="DiscreteSignal"      type="discrete-type" />
+        <xs:element name="AnalogueSignal"      type="analogue-type" />
+      </xs:choice>
+      <xs:anyAttribute namespace="##other" processContents="skip" />
+    </xs:complexType>
+  </xs:element>
+
+  <!--
+      *
+      * AFDX node
+      *
+  -->
+  <xs:complexType name="afdx-type">
+    <xs:attribute name="LocalName" type="non-empty-type" use="required" />
+    <xs:attribute name="Value" type="afdx-value-type" use="required" />
+    <xs:anyAttribute namespace="##other" processContents="skip" />
+  </xs:complexType>
+
+
+
+  <!--
+      *
+      * A429 node
+      *
+  -->
+  <xs:complexType name="a429-type">
+    <xs:attribute name="LocalName" type="non-empty-type" use="required" />
+    <xs:attribute name="Value" type="a429-value-type" use="required" />
+    <xs:anyAttribute namespace="##other" processContents="skip" />
+  </xs:complexType>
+
+
+  <!--
+      *
+      * CAN node
+      *
+  -->
+  <xs:complexType name="can-type">
+    <xs:attribute name="LocalName" type="non-empty-type" use="required" />
+    <xs:attribute name="Value" type="can-value-type" use="required" />
+    <xs:anyAttribute namespace="##other" processContents="skip" />
+  </xs:complexType>
+
+  <!--
+      *
+      * DISCRETE node
+      *
+  -->
+  <xs:complexType name="discrete-type">
+    <xs:attribute name="LocalName" type="non-empty-type" use="required" />
+    <xs:attribute name="Value" type="discrete-value-type" use="required" />
+    <xs:anyAttribute namespace="##other" processContents="skip" />
+  </xs:complexType>
+
+
+
+  <!--
+      *
+      * ANALOGUE node
+      *
+  -->
+  <xs:complexType name="analogue-type">
+    <xs:attribute name="LocalName" type="non-empty-type" use="required" />
+    <xs:attribute name="Value" type="xs:float" use="required" />
+    <xs:anyAttribute namespace="##other" processContents="skip" />
+  </xs:complexType>
+  
+
+  <!--
+      *
+      * Standard simple types
+      *
+  -->
+  <xs:simpleType name='non-empty-type'>
+    <xs:restriction base='xs:token'>
+      <xs:minLength value='1'/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name='discrete-value-type'>
+    <xs:restriction base='xs:string'>
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="true"/>
+      <xs:enumeration value="false"/>
+      <xs:enumeration value="TRUE"/>
+      <xs:enumeration value="FALSE"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name='afdx-value-type'>
+    <xs:restriction base="xs:string">
+      <xs:pattern value='[0-9A-Fa-f]+'/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name='a429-value-type'>
+    <xs:restriction base="xs:string">
+      <xs:pattern value='[0-9A-Fa-f]{2,8}'/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name='can-value-type'>
+    <xs:restriction base="xs:string">
+      <xs:pattern value='[0-9A-Fa-f]{2,16}'/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+
+
+</xs:schema>

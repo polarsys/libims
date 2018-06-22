@@ -1,0 +1,90 @@
+///////////////////////////////////////////////////////////////////////////////
+ Copyright (c) 2018 Airbus Operations S.A.S                                  
+                                                                             
+ This program and the accompanying materials are made available under the    
+ terms of the Eclipse Public License v. 2.0 which is available at            
+ http://www.eclipse.org/legal/epl-2.0, or the Eclipse Distribution License   
+ v. 1.0 which is available at                                                
+ http://www.eclipse.org/org/documents/edl-v10.php.                           
+                                                                             
+ SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause                            
+///////////////////////////////////////////////////////////////////////////////
+
+/*!
+@mainpage
+The Integrated Modular Simulation Library main purpose is to implement an abstract communication layer able to implement several protocols.
+
+@section section_scope Scope
+At the moment, only the VISTAS protocol is available in LIBIMS.
+@subsection subsection_vistas VISTAS
+VISTAS is a new protocol that enables interconnecting virtual components. It also enables the monitoring and the control of the data exchanges and of the virtual components themselves.@n
+
+@section section_functionaldescription Usage
+LIBIMS usage is split in three main phases.
+@subsection subsection_initialization Initialization
+The library will load the configuration files provided to the ims_create_context() function and initialize its internal structures.
+@subsection subsection_runtime Runtime
+The runtime consists in a cycle loop defined by:
+- <b>Import</b>@n
+According to @ref ims_import() the library will read data from network and fulfill data internally.
+- <b>Update</b>@n
+Read / Write your messages. You can access to the message database through the @ref ims_get_message() function.
+- <b>Progress</b>@n
+Give the spent time to the library through the @ref ims_progress() function.
+- <b>Send</b>@n
+Send all messages on the network with @ref ims_send_all() function.
+.
+@subsection subsection_termination Termination
+The library internal resources are free through the @ref ims_free_context() function.
+
+@section section_compatibility Compatibility
+- <b>Linux</b>
+  - 32 bits@n
+	RHEL5, RHEL7
+  - 64 bits@n
+	RHEL5, RHEL7
+- <b>Windows</b>
+  - 32 bits@n
+	WIN7, WIN10
+  - 64 bits@n
+	WIN7, WIN10
+.
+
+@section section_compilation Compilation
+Compilation process is made according to <a href="http://cmake.org/">CMake</a> tool.
+At compilation time, dependencies are:
+- <b><a href="https://ninja-build.org">Ninja</a></b> [Mandatory] 1.8.2
+  Build system.
+- <b><a href="http://xmlsoft.org">LibXml2</a></b> [Mandatory] @DOX_LIBXML2_VERSION@\n
+  Mainly used to handle XML & XSD files.
+- <b><a href="http://www.doxygen.org">Doxygen</a></b> [Optionnal] @DOX_DOXYGEN_VERSION@\n
+  Documentation generation.
+- <b><a href="https://www.graphviz.org">Graphviz</a></b> [Optionnal] 2.26.3
+  Graph virtualization software used for documentation generation.
+- <b><a href="http://asciidoctor.org/">Asciidoctor</a></b> [Optionnal] 1.5.6
+  Documentation generation, from Ruby & Gems.
+- <b><a href="http://ltp.sourceforge.net/coverage/lcov.php">LCOV</a></b> [Optionnal] 1.13.0
+  Code coverage report generation.
+.
+At runtime, no particular dependency is needed except compiler ones.
+
+
+@section section_xml_validation XML Format Validation
+The XML structures are validated thanks to xsd files :
+- <a href="./../../ims_init.xsd">IMS initialisation file</a>
+- <a href="./../../ims_config.xsd">IMS configuration file</a>
+- <a href="./../../vistas_config.xsd">VISTAS configuration file</a>
+.
+
+@section section_glossary Glossary
+<table>
+<tr><th>ACRONYM<th>MEANING
+<tr><td><b>IMS</b><td>Integrated Modular Simulation
+<tr><td><b>VISTAS</b><td>Virtually Integrated Simulation for Tests between Airframers and Suppliers
+</table>
+
+@section section_links Links
+<a href="https://www.eurocae.net/about-us/working-groups/#collapse-2695-29">EUROCAE WG-97 / Interoperability of Virtual Avionics Components</a>
+@section section_contributors Contributors
+<a href="mailto:geoffrey.g.delhomme@airbus.com">Geoffrey Delhomme / Airbus Operations S.A.S</a>
+*/

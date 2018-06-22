@@ -1,0 +1,19 @@
+<TestCase ID="@REQ_TEST_NAME@">
+	<Name>@REQ_TEST_NAME@</Name>
+	<TestDate>@REQ_TEST_TIME@</TestDate>
+	<Purpose>Check the reading of A429 sampling messages</Purpose>
+	<Step ID="@REQ_TEST_NAME@_01">
+		<Reference>E_LIBIMS_SRD_MSG_0010</Reference>
+		<Reference>E_LIBIMS_SRD_MSG_0020</Reference>
+		<Reference>E_LIBIMS_SRD_MSG_0040</Reference>
+		<!-- <Reference>E_LIBIMS_RUNTIME_0110</Reference> -->
+		<!-- <Reference>E_LIBIMS_RUNTIME_0130</Reference> -->
+		<!-- <Reference>E_LIBIMS_RUNTIME_0140</Reference> -->
+		<!-- <Reference>E_LIBIMS_RUNTIME_0150</Reference> -->
+		<!-- <Reference>E_LIBIMS_RUNTIME_0170</Reference> -->
+		<!-- <Reference>E_LIBIMS_RUNTIME_0180</Reference> -->
+		<!-- <Reference>E_LIBIMS_RUNTIME_0200</Reference> -->
+		<!-- <Reference>E_LIBIMS_RUNTIME_0260</Reference> -->
+		<Result>@REQ_TEST_RESULT@</Result>
+	</Step>
+</TestCase>

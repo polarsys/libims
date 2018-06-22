@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- 
+    * Copyright (c) 2018 Airbus Operations S.A.S                                  *
+    *                                                                             *
+    * This program and the accompanying materials are made available under the    *
+    * terms of the Eclipse Public License v. 2.0 which is available at            *
+    * http://www.eclipse.org/legal/epl-2.0, or the Eclipse Distribution License   *
+    * v. 1.0 which is available at                                                *
+    * http://www.eclipse.org/org/documents/edl-v10.php.                           *
+    *                                                                             *
+    * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause                            *
+-->
+
+<VirtualComponent xmlns:ex="http://airbus.com/modelingandsimulation/vsim/extension" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="testVirtualComponent" xsi:noNamespaceSchemaLocation="ims_config.xsd">
+  <Equipment Name="firstEquipment">
+    <Application Name="firstApplication">
+      <DataExchange>
+        <AFDX>
+          <ConsumedData>
+            <QueuingMessage Name="firstEquipment_firstApplication_AFDX_IN_AFDXQ1" LocalName="AFDXLocalQ1" MaxSizeBytes="42" QueueDepth="2" />
+            <QueuingMessage Name="firstEquipment_firstApplication_AFDX_IN_AFDXQ2" LocalName="AFDXLocalQ2" MaxSizeBytes="21" QueueDepth="4" />
+            <SamplingMessage Name="firstEquipment_firstApplication_AFDX_IN_AFDXsampling" LocalName="AFDXsampling" MessageSizeBytes="21" ValidityDurationUs="50000" />
+          </ConsumedData>
+          <ProducedData>
+            <QueuingMessage Name="firstEquipment_firstApplication_AFDX_OUT_AFDXoutput" LocalName="AFDXoutput" MaxSizeBytes="42" QueueDepth="2" />
+          </ProducedData>
+        </AFDX>
+      </DataExchange>
+    </Application>
+  </Equipment>
+</VirtualComponent>

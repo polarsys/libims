@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- 
+    * Copyright (c) 2018 Airbus Operations S.A.S                                  *
+    *                                                                             *
+    * This program and the accompanying materials are made available under the    *
+    * terms of the Eclipse Public License v. 2.0 which is available at            *
+    * http://www.eclipse.org/legal/epl-2.0, or the Eclipse Distribution License   *
+    * v. 1.0 which is available at                                                *
+    * http://www.eclipse.org/org/documents/edl-v10.php.                           *
+    *                                                                             *
+    * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause                            *
+-->
+
+<Network xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vistas_config.xsd">
+  <VirtualComponent Name="testVirtualComponent">
+    <A664_Channel Name="firstEquipment_firstApplication_AFDX_IN_input_queuing" Direction="In" MessageMaxSize="42" FifoSize="2">
+      <Socket DstIP="226.23.12.2" DstPort="5077" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+    </A664_Channel>
+    <A664_Channel Name="firstEquipment_firstApplication_AFDX_OUT_AFDXQ1" Direction="Out" MessageMaxSize="42" FifoSize="2">
+      <Socket DstIP="226.23.12.4" DstPort="5078" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+    </A664_Channel>
+    <A664_Channel Name="firstEquipment_firstApplication_AFDX_OUT_AFDXQ2" Direction="Out" MessageMaxSize="21" FifoSize="4">
+      <Socket DstIP="226.23.12.4" DstPort="5077" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+    </A664_Channel>
+    <A664_Channel Name="firstEquipment_firstApplication_AFDX_OUT_sampling_message" Direction="Out" MessageMaxSize="42" FifoSize="1">
+      <Socket DstIP="226.23.12.5" DstPort="5078" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+    </A664_Channel>
+  </VirtualComponent>
+</Network>

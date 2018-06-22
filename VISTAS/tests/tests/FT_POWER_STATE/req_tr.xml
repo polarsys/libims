@@ -1,0 +1,14 @@
+<TestCase ID="@REQ_TEST_NAME@">
+	<Name>@REQ_TEST_NAME@</Name>
+	<TestDate>@REQ_TEST_TIME@</TestDate>
+	<Purpose>Check we can control the power supply state returned by IMS library</Purpose>
+	<Step ID="@REQ_TEST_NAME@_01">
+		<Reference>E_LIBIMS_SRD_INSTRUMENTATION_0010</Reference>
+		<Reference>E_LIBIMS_SRD_INSTRUMENTATION_0020</Reference>
+		<Reference>E_LIBIMS_SRD_INSTRUMENTATION_0190</Reference>
+		<Reference>E_LIBIMS_SRD_INSTRUMENTATION_0200</Reference>
+		<Reference>E_LIBIMS_SRD_INSTRUMENTATION_0210</Reference>
+		<Reference>E_LIBIMS_SRD_INSTRUMENTATION_0220</Reference>
+		<Result>@REQ_TEST_RESULT@</Result>
+	</Step>
+</TestCase>

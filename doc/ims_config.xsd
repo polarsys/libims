@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- 
+    * Copyright (c) 2018 Airbus Operations S.A.S                                  *
+    *                                                                             *
+    * This program and the accompanying materials are made available under the    *
+    * terms of the Eclipse Public License v. 2.0 which is available at            *
+    * http://www.eclipse.org/legal/epl-2.0, or the Eclipse Distribution License   *
+    * v. 1.0 which is available at                                                *
+    * http://www.eclipse.org/org/documents/edl-v10.php.                           *
+    *                                                                             *
+    * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause                            *
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           elementFormDefault="unqualified" 
+           attributeFormDefault="unqualified" 
+           version="1.0">
+
+  <!--
+      * 
+      * VirtualComponent node
+      *
+  -->
+  <xs:element name="VirtualComponent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="DataExchange" type="data-exchange-type" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="Equipment"    type="equipment-type"     minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="Name"                type="non-empty-type"        use="required" />
+      <xs:attribute name="ProdId"              type="xs:nonNegativeInteger" use="optional" />
+      <xs:attribute name="StartupRunningState" type="running-state-type"    use="optional" />
+      <xs:attribute name="PowerState"          type="power-state-type"      use="optional" />
+      <xs:anyAttribute namespace="##other" processContents="skip"/>
+    </xs:complexType>
+  </xs:element>
+
+
+  <!--
+      *
+      * Equipment node
+      *
+  -->
+  <xs:complexType name="equipment-type">
+    <xs:sequence>
+      <xs:element name="DataExchange" type="data-exchange-type" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Application"  type="application-type"   minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="Name" type="non-empty-type" use="required" />
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+
+  <!--
+      *
+      * Application node
+      *
+  -->
+  <xs:complexType name="application-type">
+    <xs:sequence>
+      <xs:element name="DataExchange" type="data-exchange-type" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attribute name="Name" type="non-empty-type" use="required" />
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+
+
+  <!--
+      *
+      * DataExchange node
+      *
+  -->
+  <xs:complexType name="data-exchange-type">
+    <xs:all>
+      <xs:element name="AFDX"     type="afdx-type"     minOccurs="0" maxOccurs="1"/>
+      <xs:element name="A429"     type="a429-type"     minOccurs="0" maxOccurs="1"/>
+      <xs:element name="CAN"      type="can-type"      minOccurs="0" maxOccurs="1"/>
+      <xs:element name="DISCRETE" type="discrete-type" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="ANALOGUE" type="analogue-type" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="NAD"      type="nad-type"      minOccurs="0" maxOccurs="1"/>
+    </xs:all>
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+
+
+  <!--
+      *
+      * AFDX node
+      *
+  -->
+  <xs:complexType name="afdx-type">
+    <xs:all>
+      <xs:element name="ConsumedData" type="afdx-direction-type" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="ProducedData" type="afdx-direction-type" minOccurs="0" maxOccurs="1"/>
+    </xs:all>
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+  <xs:complexType name="afdx-direction-type">
+    <xs:choice maxOccurs="unbounded">
+      <xs:element name="SamplingMessage" type="afdx-sampling-type" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="QueuingMessage"  type="afdx-queuing-type"  minOccurs="0" maxOccurs="1"/>      
+    </xs:choice>
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+  <xs:complexType name="afdx-sampling-type">
+    <xs:attribute name="Name"               type="non-empty-type"        use="required" />
+    <xs:attribute name="LocalName"          type="non-empty-type"        use="required" />
+    <xs:attribute name="MessageSizeBytes"   type="xs:positiveInteger"    use="required" />
+    <xs:attribute name="ValidityDurationUs" type="xs:nonNegativeInteger" use="required" />
+    <xs:attribute name="PeriodUs"           type="xs:nonNegativeInteger" use="optional" />
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+  <xs:complexType name="afdx-queuing-type">
+    <xs:attribute name="Name"         type="non-empty-type"     use="required" />
+    <xs:attribute name="LocalName"    type="non-empty-type"     use="required" />
+    <xs:attribute name="MaxSizeBytes" type="xs:positiveInteger" use="required" />
+    <xs:attribute name="QueueDepth"   type="xs:positiveInteger" use="required" />
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+
+
+  <!--
+      *
+      * A429 node
+      *
+  -->
+  <xs:complexType name="a429-type">
+    <xs:all>
+      <xs:element name="ConsumedData" type="a429-direction-type" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="ProducedData" type="a429-direction-type" minOccurs="0" maxOccurs="1"/>
+    </xs:all>
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+  <xs:complexType name="a429-direction-type">
+    <xs:sequence>
+      <xs:element name="Bus" type="a429-bus-type" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+  <xs:complexType name="a429-bus-type">
+    <xs:choice maxOccurs="unbounded">
+      <xs:element name="SamplingLabel" type="a429-sampling-type" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="QueuingLabel"  type="a429-queuing-type"  minOccurs="0" maxOccurs="1"/>      
+    </xs:choice>
+    <xs:attribute name="Name" type="non-empty-type" use="required" />
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+  <xs:complexType name="a429-sampling-type">
+    <xs:attribute name="Number"             type="label-number-type"       use="required" />
+    <xs:attribute name="Sdi"                type="sdi-type"                use="required" />
+    <xs:attribute name="LocalName"          type="non-empty-type"          use="required" />
+    <xs:attribute name="ValidityDurationUs" type="xs:nonNegativeInteger"   use="required" />
+    <xs:attribute name="PeriodUs"           type="xs:nonNegativeInteger"   use="optional" />
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+  <xs:complexType name="a429-queuing-type">
+    <xs:attribute name="Number"             type="label-number-type"       use="required" />
+    <xs:attribute name="Sdi"                type="sdi-type"                use="required" />
+    <xs:attribute name="LocalName"          type="non-empty-type"          use="required" />
+    <xs:attribute name="QueueDepth"         type="xs:nonNegativeInteger"   use="required" />
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+
+
+  <!--
+      *
+      * CAN node
+      *
+  -->
+  <xs:complexType name="can-type">
+    <xs:all>
+      <xs:element name="ConsumedData" type="can-direction-type" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="ProducedData" type="can-direction-type" minOccurs="0" maxOccurs="1"/>
+    </xs:all>
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+  <xs:complexType name="can-direction-type">
+    <xs:sequence>
+      <xs:element name="Bus" type="can-bus-type" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+  <xs:complexType name="can-bus-type">
+    <xs:choice maxOccurs="unbounded">
+      <xs:element name="SamplingMessage" type="can-sampling-type" minOccurs="0" maxOccurs="1">
+        <xs:key name="att">
+            <xs:selector xpath="."/>
+            <xs:field xpath="@DefaultId|@Id"/>
+        </xs:key>
+      </xs:element>
+      <xs:element name="QueuingMessage"  type="can-queuing-type"  minOccurs="0" maxOccurs="1"/>      
+    </xs:choice>
+    <xs:attribute name="Name" type="non-empty-type" use="required" />
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+  <xs:complexType name="can-sampling-type">
+    <xs:simpleContent>
+        <xs:extension base="xs:string">
+            <xs:attribute name="DefaultId"          type="can-id-type"                            />
+            <xs:attribute name="Id"                 type="can-id-type"                            />
+            <xs:attribute name="LocalName"          type="non-empty-type"          use="required" />
+            <xs:attribute name="MessageSizeBytes"   type="xs:nonNegativeInteger"   use="required" />
+            <xs:attribute name="ValidityDurationUs" type="xs:nonNegativeInteger"   use="required" />
+            <xs:attribute name="PeriodUs"           type="xs:nonNegativeInteger"   use="optional" />
+            <xs:anyAttribute namespace="##other" processContents="skip"/>
+        </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="can-queuing-type">
+    <xs:anyAttribute processContents="skip"/> <!-- Not supported yet -->
+  </xs:complexType>
+
+  <!--
+      *
+      * DISCRETE node
+      *
+  -->
+  <xs:complexType name="discrete-type">
+    <xs:all>
+      <xs:element name="ConsumedData" type="discrete-direction-type" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="ProducedData" type="discrete-direction-type" minOccurs="0" maxOccurs="1"/>
+    </xs:all>
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+  <xs:complexType name="discrete-direction-type">
+    <xs:sequence>
+      <xs:element name="Signal" type="discrete-signal-type" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+  <xs:complexType name="discrete-signal-type">
+    <xs:attribute name="Name"          type="non-empty-type"        use="required" />
+    <xs:attribute name="LocalName"     type="non-empty-type"        use="required" />
+    <xs:attribute name="TrueState"     type="xs:nonNegativeInteger" use="optional" />
+    <xs:attribute name="FalseState"    type="xs:nonNegativeInteger" use="optional" />
+    <xs:attribute name="HWPP"          type="hwpp-value-type"       use="optional" />
+    <xs:attribute name="PeriodUs"      type="xs:nonNegativeInteger" use="optional" />
+    <xs:attribute name="ValidityDurationUs" type="xs:nonNegativeInteger" use="optional" />
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+
+
+  <!--
+      *
+      * ANALOGUE node
+      *
+  -->
+  <xs:complexType name="analogue-type">
+    <xs:all>
+      <xs:element name="ConsumedData" type="analogue-direction-type" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="ProducedData" type="analogue-direction-type" minOccurs="0" maxOccurs="1"/>
+    </xs:all>
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+  <xs:complexType name="analogue-direction-type">
+    <xs:sequence>
+      <xs:element name="Signal" type="analogue-signal-type" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+  <xs:complexType name="analogue-signal-type">
+    <xs:attribute name="Name"          type="non-empty-type" use="required" />
+    <xs:attribute name="LocalName"     type="non-empty-type" use="required" />
+    <xs:attribute name="ScaleFactor"   type="xs:float"       use="required" />
+    <xs:attribute name="Offset"        type="xs:float"       use="required" />
+    <xs:attribute name="PeriodUs"      type="xs:nonNegativeInteger" use="optional" />
+    <xs:attribute name="ValidityDurationUs" type="xs:nonNegativeInteger" use="optional" />
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+
+  <!--
+      *
+      * NAD node
+      *
+  -->
+  <xs:complexType name="nad-type">
+    <xs:all>
+      <xs:element name="ConsumedData" type="nad-direction-type" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="ProducedData" type="nad-direction-type" minOccurs="0" maxOccurs="1"/>
+    </xs:all>
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+  <xs:complexType name="nad-direction-type">
+    <xs:sequence>
+      <xs:element name="Message" type="nad-message-type" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+  <xs:complexType name="nad-message-type">
+    <xs:attribute name="Name"             type="non-empty-type"     use="required" />
+    <xs:attribute name="LocalName"        type="non-empty-type"     use="required" />
+    <xs:attribute name="MessageSizeBytes" type="xs:positiveInteger" use="required" />
+    <xs:attribute name="PeriodUs"         type="xs:nonNegativeInteger" use="optional" />
+    <xs:attribute name="MessageType"       type="message-type-enum" use="optional" />
+    <xs:attribute name="MessageDimension1" type="xs:nonNegativeInteger" use="optional" />
+    <xs:attribute name="MessageDimension2" type="xs:nonNegativeInteger" use="optional" />
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:complexType>
+
+
+
+  <!--
+      *
+      * Standard simple types
+      *
+  -->
+  <xs:simpleType name='non-empty-type'>
+    <xs:restriction base='xs:token'>
+      <xs:minLength value='1'/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name='label-number-type'>
+    <xs:restriction base='xs:string'>
+      <xs:pattern value='[0-3]?[0-7]?[0-7]'/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name='sdi-type'>
+    <xs:restriction base='xs:string'>
+      <xs:enumeration value="00"/>
+      <xs:enumeration value="01"/>
+      <xs:enumeration value="10"/>
+      <xs:enumeration value="11"/>
+      <xs:enumeration value="DD"/>
+      <xs:enumeration value="XX"/>
+      <xs:enumeration value="NU"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name='message-type-enum'>
+    <xs:restriction base='xs:string'>
+      <xs:enumeration value="BOOLEAN"/>
+      <xs:enumeration value="C08"/>
+      <xs:enumeration value="F32"/>
+      <xs:enumeration value="F64"/>
+      <xs:enumeration value="I16"/>
+      <xs:enumeration value="I32"/>
+      <xs:enumeration value="I64"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name='discrete-value-type'>
+    <xs:restriction base='xs:string'>
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="true"/>
+      <xs:enumeration value="false"/>
+      <xs:enumeration value="TRUE"/>
+      <xs:enumeration value="FALSE"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+
+  <xs:simpleType name='hwpp-value-type'>
+    <xs:restriction base='xs:string'>
+      <xs:enumeration value="yes"/>
+      <xs:enumeration value="no"/>
+      <xs:enumeration value="YES"/>
+      <xs:enumeration value="NO"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+
+  <xs:simpleType name='can-id-type'>
+    <xs:restriction base="xs:string">
+      <xs:pattern value='[0-9A-Fa-f]{1,8}'/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+
+  <xs:simpleType name='running-state-type'>
+    <xs:restriction base='xs:string'>
+      <xs:enumeration value="run"/>
+      <xs:enumeration value="step"/>
+      <xs:enumeration value="hold"/>
+      <xs:enumeration value="reset"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name='power-state-type'>
+    <xs:restriction base='xs:string'>
+      <xs:enumeration value="on"/>
+      <xs:enumeration value="off"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

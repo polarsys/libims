@@ -1,0 +1,15 @@
+<TestCase ID="@REQ_TEST_NAME@">
+	<Name>@REQ_TEST_NAME@</Name>
+	<TestDate>@REQ_TEST_TIME@</TestDate>
+	<Purpose>Check the push of A429 queuing messages</Purpose>
+	<Step ID="@REQ_TEST_NAME@_01">
+		<Reference>E_LIBIMS_SRD_RUNTIME_0310</Reference>
+		<Reference>E_LIBIMS_SRD_RUNTIME_0320</Reference>
+		<Reference>E_LIBIMS_SRD_RUNTIME_0330</Reference>
+		<Reference>E_LIBIMS_SRD_RUNTIME_0340</Reference>
+		<Reference>E_LIBIMS_SRD_RUNTIME_0350</Reference>
+		<Reference>E_LIBIMS_SRD_RUNTIME_0380</Reference>
+		<Reference>E_LIBIMS_SRD_RUNTIME_0390</Reference>
+		<Result>@REQ_TEST_RESULT@</Result>
+	</Step>
+</TestCase>

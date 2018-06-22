@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- 
+    * Copyright (c) 2018 Airbus Operations S.A.S                                  *
+    *                                                                             *
+    * This program and the accompanying materials are made available under the    *
+    * terms of the Eclipse Public License v. 2.0 which is available at            *
+    * http://www.eclipse.org/legal/epl-2.0, or the Eclipse Distribution License   *
+    * v. 1.0 which is available at                                                *
+    * http://www.eclipse.org/org/documents/edl-v10.php.                           *
+    *                                                                             *
+    * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause                            *
+-->
+
+<Network xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vistas_config.xsd">
+  <VirtualComponent Name="testVirtualComponent">
+    <NAD_Channel Name="NAD_IN_port1959239586" Direction="In" MessageMaxSize="16" FifoSize="1">
+      <Socket DstIP="226.23.50.10" DstPort="5078" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+      <Signals>
+        <Signal Name="grp1_nad1_I" ByteOffset="0" Size="5" />
+      </Signals>
+    </NAD_Channel>
+    <NAD_Channel Name="NAD_OUT_group1" Direction="Out" MessageMaxSize="10" FifoSize="1">
+      <Socket DstIP="226.23.21.9" DstPort="5078" />
+      <Header Src_Id="Yes" SN="Yes" QoS_Timestamp="Yes" Data_Timestamp="Yes" />
+      <Signals>
+        <Signal Name="grp1_nad1_O" ByteOffset="0" Size="1" />
+      </Signals>
+    </NAD_Channel>
+    <NAD_Channel Name="firstEquipment_NAD_IN_port504336483" Direction="In" MessageMaxSize="16" FifoSize="1">
+      <Socket DstIP="226.23.44.10" DstPort="5078" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+      <Signals>
+        <Signal Name="grp1_nad1_I_1" ByteOffset="0" Size="5" />
+      </Signals>
+    </NAD_Channel>
+    <A664_Channel Name="firstEquipment_firstApplication_AFDX_IN_AFDXQ1_I" Direction="In" MessageMaxSize="42" FifoSize="2">
+      <Socket DstIP="226.23.12.1" DstPort="7078" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+    </A664_Channel>
+    <A664_Channel Name="firstEquipment_firstApplication_AFDX_IN_AFDXQ2_I" Direction="In" MessageMaxSize="21" FifoSize="4">
+      <Socket DstIP="226.23.12.1" DstPort="7077" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+    </A664_Channel>
+    <A664_Channel Name="firstEquipment_firstApplication_AFDX_IN_oneAFDX_I" Direction="In" MessageMaxSize="42" FifoSize="1">
+      <Socket DstIP="226.23.12.2" DstPort="7078" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+    </A664_Channel>
+    <A664_Channel Name="firstEquipment_firstApplication_AFDX_IN_OtherAFDX_I" Direction="In" MessageMaxSize="21" FifoSize="1">
+      <Socket DstIP="226.23.12.2" DstPort="7077" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+    </A664_Channel>
+    <A664_Channel Name="firstEquipment_firstApplication_AFDX_OUT_AFDXQ1_O" Direction="Out" MessageMaxSize="42" FifoSize="2">
+      <Socket DstIP="226.23.12.4" DstPort="7078" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+    </A664_Channel>
+    <A664_Channel Name="firstEquipment_firstApplication_AFDX_OUT_AFDXQ2_O" Direction="Out" MessageMaxSize="21" FifoSize="4">
+      <Socket DstIP="226.23.12.4" DstPort="7077" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+    </A664_Channel>
+    <A664_Channel Name="firstEquipment_firstApplication_AFDX_OUT_oneAFDX_O" Direction="Out" MessageMaxSize="42" FifoSize="1">
+      <Socket DstIP="226.23.12.5" DstPort="7078" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="Yes" Data_Timestamp="No" />
+    </A664_Channel>
+    <A664_Channel Name="firstEquipment_firstApplication_AFDX_OUT_OtherAFDX_O" Direction="Out" MessageMaxSize="21" FifoSize="1">
+      <Socket DstIP="226.23.12.5" DstPort="7077" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+    </A664_Channel>
+    <A429_Channel Name="firstEquipment_firstApplication_A429_IN_bus1" Direction="In" MessageMaxSize="20" FifoSize="1">
+      <Socket DstIP="226.23.12.3" DstPort="6078" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+    </A429_Channel>
+    <A429_Channel Name="firstEquipment_firstApplication_A429_IN_bus2" Direction="In" MessageMaxSize="24" FifoSize="1">
+      <Socket DstIP="226.23.12.3" DstPort="6079" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+    </A429_Channel>
+    <A429_Channel Name="firstEquipment_firstApplication_A429_OUT_bus1" Direction="Out" MessageMaxSize="20" FifoSize="1">
+      <Socket DstIP="226.23.12.4" DstPort="6078" />
+      <Header Src_Id="Yes" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+    </A429_Channel>
+    <A429_Channel Name="firstEquipment_firstApplication_A429_OUT_bus2" Direction="Out" MessageMaxSize="24" FifoSize="1">
+      <Socket DstIP="226.23.12.4" DstPort="6079" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+    </A429_Channel>
+    <A825_Channel Name="firstEquipment_firstApplication_CAN_IN_bus1_I" Direction="In" MessageMaxSize="28" FifoSize="1">
+      <Socket DstIP="226.23.12.10" DstPort="5078" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+    </A825_Channel>
+    <A825_Channel Name="firstEquipment_firstApplication_CAN_IN_bus2_I" Direction="In" MessageMaxSize="28" FifoSize="1">
+      <Socket DstIP="226.23.12.10" DstPort="5079" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+    </A825_Channel>
+    <A825_Channel Name="firstEquipment_firstApplication_CAN_OUT_bus1_O" Direction="Out" MessageMaxSize="28" FifoSize="1">
+      <Socket DstIP="226.23.12.11" DstPort="5078" />
+      <Header Src_Id="No" SN="Yes" QoS_Timestamp="No" Data_Timestamp="No" />
+    </A825_Channel>
+    <A825_Channel Name="firstEquipment_firstApplication_CAN_OUT_bus2_O" Direction="Out" MessageMaxSize="28" FifoSize="1">
+      <Socket DstIP="226.23.12.11" DstPort="5079" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+    </A825_Channel>
+    <Discrete_Channel Name="firstEquipment_firstApplication_DISCRETE_IN_port1404932042" Direction="In" MessageMaxSize="2" FifoSize="1">
+      <Socket DstIP="226.23.12.44" DstPort="5078" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+      <Signals>
+        <Signal Name="grp1_sig1_I" ByteOffset="0" />
+        <Signal Name="grp1_sig2_I" ByteOffset="1" />
+      </Signals>
+    </Discrete_Channel>
+    <Discrete_Channel Name="firstEquipment_firstApplication_DISCRETE_IN_port1984094095" Direction="In" MessageMaxSize="2" FifoSize="1">
+      <Socket DstIP="226.23.12.44" DstPort="5079" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+      <Signals>
+        <Signal Name="grp2_sig1_I" ByteOffset="0" />
+        <Signal Name="grp2_sig2_I" ByteOffset="1" />
+      </Signals>
+    </Discrete_Channel>
+    <Discrete_Channel Name="firstEquipment_firstApplication_DISCRETE_OUT_group1" Direction="Out" MessageMaxSize="2" FifoSize="1">
+      <Socket DstIP="226.23.12.33" DstPort="5078" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="Yes" />
+      <Signals>
+        <Signal Name="grp1_sig1_O" ByteOffset="0" />
+        <Signal Name="grp1_sig2_O" ByteOffset="1" />
+      </Signals>
+    </Discrete_Channel>
+    <Discrete_Channel Name="firstEquipment_firstApplication_DISCRETE_OUT_group2" Direction="Out" MessageMaxSize="2" FifoSize="1">
+      <Socket DstIP="226.23.12.33" DstPort="5079" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+      <Signals>
+        <Signal Name="grp2_sig1_O" ByteOffset="0" />
+        <Signal Name="grp2_sig2_O" ByteOffset="1" />
+      </Signals>
+    </Discrete_Channel>
+    <Analog_Channel Name="firstEquipment_firstApplication_ANALOGUE_IN_port1043358826" Direction="In" MessageMaxSize="16" FifoSize="1">
+      <Socket DstIP="226.23.12.3" DstPort="5078" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+      <Signals>
+        <Signal Name="grp1_sig1_I" ByteOffset="0" />
+        <Signal Name="grp1_sig2_I" ByteOffset="8" />
+      </Signals>
+    </Analog_Channel>
+    <Analog_Channel Name="firstEquipment_firstApplication_ANALOGUE_IN_port1558079303" Direction="In" MessageMaxSize="16" FifoSize="1">
+      <Socket DstIP="226.23.12.3" DstPort="5079" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+      <Signals>
+        <Signal Name="grp2_sig1_I" ByteOffset="0" />
+        <Signal Name="grp2_sig2_I" ByteOffset="8" />
+      </Signals>
+    </Analog_Channel>
+    <Analog_Channel Name="firstEquipment_firstApplication_ANALOGUE_OUT_group1" Direction="Out" MessageMaxSize="16" FifoSize="1">
+      <Socket DstIP="226.23.12.4" DstPort="5078" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+      <Signals>
+        <Signal Name="grp1_sig1_O" ByteOffset="0" />
+        <Signal Name="grp1_sig2_O" ByteOffset="8" />
+      </Signals>
+    </Analog_Channel>
+    <Analog_Channel Name="firstEquipment_firstApplication_ANALOGUE_OUT_group2" Direction="Out" MessageMaxSize="16" FifoSize="1">
+      <Socket DstIP="226.23.12.4" DstPort="5079" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+      <Signals>
+        <Signal Name="grp2_sig1_O" ByteOffset="0" />
+        <Signal Name="grp2_sig2_O" ByteOffset="8" />
+      </Signals>
+    </Analog_Channel>
+    <NAD_Channel Name="firstEquipment_firstApplication_NAD_IN_port1671590089" Direction="In" MessageMaxSize="16" FifoSize="1">
+      <Socket DstIP="226.23.14.10" DstPort="5078" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+      <Signals>
+        <Signal Name="grp1_nad1_I_2" ByteOffset="0" Size="4" />
+        <Signal Name="grp1_nad2_I" ByteOffset="6" Size="1" />
+      </Signals>
+    </NAD_Channel>
+    <NAD_Channel Name="firstEquipment_firstApplication_NAD_IN_port58488213" Direction="In" MessageMaxSize="20" FifoSize="1">
+      <Socket DstIP="226.23.14.10" DstPort="5079" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+      <Signals>
+        <Signal Name="grp2_nad1_I" ByteOffset="0" Size="8" />
+        <Signal Name="grp2_nad2_I" ByteOffset="8" Size="10" />
+      </Signals>
+    </NAD_Channel>
+    <NAD_Channel Name="firstEquipment_firstApplication_NAD_OUT_group1" Direction="Out" MessageMaxSize="10" FifoSize="1">
+      <Socket DstIP="226.23.14.9" DstPort="5078" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+      <Signals>
+        <Signal Name="grp1_nad1_O_1" ByteOffset="0" Size="4" />
+        <Signal Name="grp1_nad2_O" ByteOffset="6" Size="1" />
+      </Signals>
+    </NAD_Channel>
+    <NAD_Channel Name="firstEquipment_firstApplication_NAD_OUT_group2" Direction="Out" MessageMaxSize="18" FifoSize="1">
+      <Socket DstIP="226.23.14.9" DstPort="5079" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+      <Signals>
+        <Signal Name="grp2_nad1_O" ByteOffset="0" Size="8" />
+        <Signal Name="grp2_nad2_O" ByteOffset="8" Size="10" />
+      </Signals>
+    </NAD_Channel>
+    <NAD_Channel Name="firstEquipment_secondApplication_NAD_OUT_group1" Direction="Out" MessageMaxSize="10" FifoSize="1">
+      <Socket DstIP="226.23.20.9" DstPort="5078" />
+      <Header Src_Id="No" SN="No" QoS_Timestamp="No" Data_Timestamp="No" />
+      <Signals>
+        <Signal Name="grp1_nad1_O_2" ByteOffset="0" Size="4" />
+      </Signals>
+    </NAD_Channel>
+  </VirtualComponent>
+</Network>

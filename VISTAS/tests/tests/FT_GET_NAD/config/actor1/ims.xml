@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- 
+    * Copyright (c) 2018 Airbus Operations S.A.S                                  *
+    *                                                                             *
+    * This program and the accompanying materials are made available under the    *
+    * terms of the Eclipse Public License v. 2.0 which is available at            *
+    * http://www.eclipse.org/legal/epl-2.0, or the Eclipse Distribution License   *
+    * v. 1.0 which is available at                                                *
+    * http://www.eclipse.org/org/documents/edl-v10.php.                           *
+    *                                                                             *
+    * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause                            *
+-->
+
+<VirtualComponent xmlns:ex="http://airbus.com/modelingandsimulation/vsim/extension" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="testVirtualComponent" xsi:noNamespaceSchemaLocation="ims_config.xsd">
+  <Equipment Name="firstEquipment">
+    <Application Name="firstApplication">
+      <DataExchange>
+        <NAD>
+          <ProducedData>
+            <Message Name="grp1_nad1_O" LocalName="NAD_Message1_O" MessageSizeBytes="4" PeriodUs="50000" />
+            <Message Name="grp1_nad2_O" LocalName="NAD_Message2_O" MessageSizeBytes="1" PeriodUs="50000" />
+            <Message Name="grp2_nad1_O" LocalName="NAD_Message3_O" MessageSizeBytes="8" PeriodUs="60000" />
+            <Message Name="grp2_nad2_O" LocalName="NAD_Message4_O" MessageSizeBytes="10" PeriodUs="60000" />
+          </ProducedData>
+          <ConsumedData>
+            <Message Name="grp1_nad1_I" LocalName="NAD_Message1_I" MessageSizeBytes="4" />
+            <Message Name="grp1_nad2_I" LocalName="NAD_Message2_I" MessageSizeBytes="1" />
+            <Message Name="grp2_nad1_I" LocalName="NAD_Message3_I" MessageSizeBytes="8" />
+            <Message Name="grp2_nad2_I" LocalName="NAD_Message4_I" MessageSizeBytes="10" />
+          </ConsumedData>
+        </NAD>
+      </DataExchange>
+    </Application>
+  </Equipment>
+</VirtualComponent>

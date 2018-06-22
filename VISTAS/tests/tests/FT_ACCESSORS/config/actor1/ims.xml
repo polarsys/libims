@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- 
+    * Copyright (c) 2018 Airbus Operations S.A.S                                  *
+    *                                                                             *
+    * This program and the accompanying materials are made available under the    *
+    * terms of the Eclipse Public License v. 2.0 which is available at            *
+    * http://www.eclipse.org/legal/epl-2.0, or the Eclipse Distribution License   *
+    * v. 1.0 which is available at                                                *
+    * http://www.eclipse.org/org/documents/edl-v10.php.                           *
+    *                                                                             *
+    * SPDX-License-Identifier: EPL-2.0 OR BSD-3-Clause                            *
+-->
+
+<VirtualComponent xmlns:ex="http://airbus.com/modelingandsimulation/vsim/extension" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="testVirtualComponent" xsi:noNamespaceSchemaLocation="ims_config.xsd">
+  <DataExchange>
+    <NAD>
+      <ProducedData>
+        <Message Name="grp1_nad1_O" LocalName="NAD_Message1_O" MessageSizeBytes="1" PeriodUs="50000" />
+      </ProducedData>
+      <ConsumedData>
+        <Message Name="grp1_nad1_I" LocalName="NAD_Message1_I" MessageSizeBytes="5" />
+      </ConsumedData>
+    </NAD>
+  </DataExchange>
+  <Equipment Name="firstEquipment">
+    <DataExchange>
+      <NAD>
+        <ConsumedData>
+          <Message Name="grp1_nad1_I_1" LocalName="NAD_Message1_I" MessageSizeBytes="5" />
+        </ConsumedData>
+      </NAD>
+    </DataExchange>
+    <Application Name="firstApplication">
+      <DataExchange>
+        <A429>
+          <ProducedData>
+            <Bus Name="firstEquipment_firstApplication_A429_OUT_bus1">
+              <SamplingLabel Sdi="01" LocalName="bus1_l1_O" Number="024" ValidityDurationUs="3750000000" />
+              <QueuingLabel Sdi="11" LocalName="bus1_l2_O" Number="024" QueueDepth="4" />
+            </Bus>
+            <Bus Name="firstEquipment_firstApplication_A429_OUT_bus2">
+              <SamplingLabel Sdi="01" LocalName="bus2_l1_O" Number="024" ValidityDurationUs="60000" />
+              <QueuingLabel Sdi="01" LocalName="bus2_l2_O" Number="123" QueueDepth="5" />
+            </Bus>
+          </ProducedData>
+          <ConsumedData>
+            <Bus Name="firstEquipment_firstApplication_A429_IN_bus1">
+              <SamplingLabel Sdi="01" LocalName="bus1_l1_I" Number="024" ValidityDurationUs="50000" />
+              <QueuingLabel Sdi="11" LocalName="bus1_l2_I" Number="024" QueueDepth="4" />
+            </Bus>
+            <Bus Name="firstEquipment_firstApplication_A429_IN_bus2">
+              <SamplingLabel Sdi="01" LocalName="bus2_l1_I" Number="024" ValidityDurationUs="60000" />
+              <QueuingLabel Sdi="01" LocalName="bus2_l2_I" Number="123" QueueDepth="5" />
+            </Bus>
+          </ConsumedData>
+        </A429>
+        <AFDX>
+          <ProducedData>
+            <SamplingMessage Name="firstEquipment_firstApplication_AFDX_OUT_oneAFDX_O" LocalName="AFDXLocalName_O" MessageSizeBytes="42" ValidityDurationUs="50000" />
+            <SamplingMessage Name="firstEquipment_firstApplication_AFDX_OUT_OtherAFDX_O" LocalName="OtherAFDXLocalName_O" MessageSizeBytes="21" ValidityDurationUs="50000" />
+            <QueuingMessage Name="firstEquipment_firstApplication_AFDX_OUT_AFDXQ1_O" LocalName="AFDXLocalQ1_O" MaxSizeBytes="42" QueueDepth="2" />
+            <QueuingMessage Name="firstEquipment_firstApplication_AFDX_OUT_AFDXQ2_O" LocalName="AFDXLocalQ2_O" MaxSizeBytes="21" QueueDepth="4" />
+          </ProducedData>
+          <ConsumedData>
+            <QueuingMessage Name="firstEquipment_firstApplication_AFDX_IN_AFDXQ1_I" LocalName="AFDXLocalQ1_I" MaxSizeBytes="42" QueueDepth="2" />
+            <QueuingMessage Name="firstEquipment_firstApplication_AFDX_IN_AFDXQ2_I" LocalName="AFDXLocalQ2_I" MaxSizeBytes="21" QueueDepth="4" />
+            <SamplingMessage Name="firstEquipment_firstApplication_AFDX_IN_oneAFDX_I" LocalName="AFDXLocalName_I" MessageSizeBytes="42" ValidityDurationUs="50000" />
+            <SamplingMessage Name="firstEquipment_firstApplication_AFDX_IN_OtherAFDX_I" LocalName="OtherAFDXLocalName_I" MessageSizeBytes="21" ValidityDurationUs="50000" />
+          </ConsumedData>
+        </AFDX>
+        <ANALOGUE>
+          <ProducedData>
+            <Signal Name="grp1_sig1_O" LocalName="signal1_O" ScaleFactor="1.5" Offset="0" PeriodUs="50000" />
+            <Signal Name="grp1_sig2_O" LocalName="signal2_O" ScaleFactor="2" Offset="3.5" PeriodUs="50000" />
+            <Signal Name="grp2_sig1_O" LocalName="signal3_O" ScaleFactor="0.5" Offset="-4.2" PeriodUs="60000" />
+            <Signal Name="grp2_sig2_O" LocalName="signal4_O" ScaleFactor="-1.5" Offset="200" PeriodUs="60000" />
+          </ProducedData>
+          <ConsumedData>
+            <Signal Name="grp1_sig1_I" LocalName="signal1_I" ScaleFactor="1.5" Offset="0" />
+            <Signal Name="grp1_sig2_I" LocalName="signal2_I" ScaleFactor="2" Offset="3.5" />
+            <Signal Name="grp2_sig1_I" LocalName="signal3_I" ScaleFactor="0.5" Offset="-4.2" />
+            <Signal Name="grp2_sig2_I" LocalName="signal4_I" ScaleFactor="-1.5" Offset="200" />
+          </ConsumedData>
+        </ANALOGUE>
+        <CAN>
+          <ProducedData>
+            <Bus Name="firstEquipment_firstApplication_CAN_OUT_bus1_O">
+              <SamplingMessage DefaultId="1F" LocalName="bus1_m1_O" MessageSizeBytes="4" ValidityDurationUs="50000" />
+              <SamplingMessage DefaultId="20" LocalName="bus1_m2_O" MessageSizeBytes="8" ValidityDurationUs="60000" />
+            </Bus>
+            <Bus Name="firstEquipment_firstApplication_CAN_OUT_bus2_O">
+              <SamplingMessage DefaultId="10" LocalName="bus2_m1_O" MessageSizeBytes="8" ValidityDurationUs="60000" />
+              <SamplingMessage DefaultId="30" LocalName="bus2_m2_O" MessageSizeBytes="4" ValidityDurationUs="50000" />
+            </Bus>
+          </ProducedData>
+          <ConsumedData>
+            <Bus Name="firstEquipment_firstApplication_CAN_IN_bus1_I">
+              <SamplingMessage DefaultId="1F" LocalName="bus1_m1_I" MessageSizeBytes="4" ValidityDurationUs="50000" />
+              <SamplingMessage DefaultId="20" LocalName="bus1_m2_I" MessageSizeBytes="8" ValidityDurationUs="60000" />
+            </Bus>
+            <Bus Name="firstEquipment_firstApplication_CAN_IN_bus2_I">
+              <SamplingMessage DefaultId="10" LocalName="bus2_m1_I" MessageSizeBytes="8" ValidityDurationUs="60000" />
+              <SamplingMessage DefaultId="30" LocalName="bus2_m2_I" MessageSizeBytes="4" ValidityDurationUs="50000" />
+            </Bus>
+          </ConsumedData>
+        </CAN>
+        <DISCRETE>
+          <ProducedData>
+            <Signal Name="grp1_sig1_O" LocalName="DISC_signal1_O" TrueState="0" PeriodUs="50000" />
+            <Signal Name="grp1_sig2_O" LocalName="DISC_signal2_O" FalseState="42" PeriodUs="50000" />
+            <Signal Name="grp2_sig1_O" LocalName="DISC_signal3_O" PeriodUs="60000" />
+            <Signal Name="grp2_sig2_O" LocalName="DISC_signal4_O" PeriodUs="60000" />
+          </ProducedData>
+          <ConsumedData>
+            <Signal Name="grp1_sig1_I" LocalName="DISC_signal1_I" TrueState="2" FalseState="0" />
+            <Signal Name="grp1_sig2_I" LocalName="DISC_signal2_I" />
+            <Signal Name="grp2_sig1_I" LocalName="DISC_signal3_I" />
+            <Signal Name="grp2_sig2_I" LocalName="DISC_signal4_I" />
+          </ConsumedData>
+        </DISCRETE>
+        <NAD>
+          <ProducedData>
+            <Message Name="grp1_nad1_O_1" LocalName="NAD_Message1_O" MessageSizeBytes="4" PeriodUs="50000" MessageType="C08" />
+            <Message Name="grp1_nad2_O" LocalName="NAD_Message2_O" MessageSizeBytes="1" PeriodUs="50000" MessageDimension1="1" />
+            <Message Name="grp2_nad1_O" LocalName="NAD_Message3_O" MessageSizeBytes="8" PeriodUs="60000" MessageType="F64" />
+            <Message Name="grp2_nad2_O" LocalName="NAD_Message4_O" MessageSizeBytes="10" PeriodUs="60000"   />
+          </ProducedData>
+          <ConsumedData>
+            <Message Name="grp1_nad1_I_2" LocalName="NAD_Message1_I" MessageSizeBytes="4" />
+            <Message Name="grp1_nad2_I" LocalName="NAD_Message2_I" MessageSizeBytes="1" />
+            <Message Name="grp2_nad1_I" LocalName="NAD_Message3_I" MessageSizeBytes="8" />
+            <Message Name="grp2_nad2_I" LocalName="NAD_Message4_I" MessageSizeBytes="10" MessageDimension1="2" MessageDimension2="5" />
+          </ConsumedData>
+        </NAD>
+      </DataExchange>
+    </Application>
+    <Application Name="secondApplication">
+      <DataExchange>
+        <NAD>
+          <ProducedData>
+            <Message Name="grp1_nad1_O_2" LocalName="NAD_Message1_O" MessageSizeBytes="4" PeriodUs="50000" />
+          </ProducedData>
+        </NAD>
+      </DataExchange>
+    </Application>
+  </Equipment>
+  <Equipment Name="secondEquipment" />
+</VirtualComponent>
